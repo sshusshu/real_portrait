@@ -1,0 +1,204 @@
+@charset "utf-8";
+
+$content-width : 500px;
+
+.show{display: block!important;}
+.hide{display: none!important;}
+
+button{
+    display: inline-block;
+    padding: .5em .75em;
+    color: #fff;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: .25em;
+    background-color: #000;   
+}
+
+header{
+    position:relative;
+    padding: 50px;
+    h1{
+       text-align: center; 
+    }
+    nav{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        ul{
+            display: flex;
+            li{
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.preloader,.alert{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.2);
+    z-index: 10;
+}
+.preloader{
+    .loading-icon{
+      position:relative;
+      width: 150px;
+      height: 150px;
+      span{
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate3d(-50%,-50%,0);
+      }
+      svg{
+        #loading-line{
+
+        };
+      }
+    }
+}
+
+.alert{
+    .text-container{
+      background:#fff;
+      width:200px;
+      text-align:center;
+      padding:20px;
+      border-radius:4px;
+      .btn-other{
+        display:inline-block;
+        border-radius:4px;
+        padding:15px;
+        background: #000;
+        color:#fff;
+        cursor:pointer ;
+      }
+    }
+  }
+
+
+.drawing-container{
+    position: relative;
+    width: $content-width;
+    height: 500px;
+    margin: 0 auto;
+    background: #fff;
+    canvas{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      visibility: hidden;
+    }
+    .drawing-box{
+      position:absolute;
+      .download:hover{
+        box-shadow:0 0 20px #999;
+        transition:box-shadow 0.5s ease-in-out;
+      }
+    }
+    #line{
+      fill : none;
+      stroke:#000000;
+      stroke-width:1;
+      stroke-linecap:round;
+      stroke-dasharray: 4000; /*이 값은 path의 길이와 동일합니다*/
+      stroke-dashoffset: 0;
+      animation: dash 8s linear;
+    }
+    @keyframes dash {
+        0% {
+          stroke-dashoffset: 4000;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+  }
+
+.btn-wrap{
+    width: $content-width;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+        
+    .upload-btn{
+        input[type="file"]{
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip:rect(0,0,0,0);
+        border: 0;
+        }
+        label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #999;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: .25em;
+        &.primary {
+            color: #fff;
+            background-color: #000;
+        }
+        }
+
+        .upload-name {
+        display: inline-block;
+        padding: .5em .75em;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #ebebeb;
+        border-bottom-color: #e2e2e2;
+        border-radius: .25em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        }
+    }
+    .download-btn{
+        margin-top: 30px;
+        button{  
+            margin-left: 10px;
+            &:first-child{
+                margin-left: 0;
+            } 
+        }
+    }
+}
+
+
+.msg-wrap{
+    width: $content-width;
+    margin: 0 auto;
+    form{
+        width: 100%;
+        background: #000;
+        display: flex;
+        textarea{
+            width: 70%;
+            border:1px solid #e2e2e2;
+        }
+        button{
+            width: 30%;
+        }
+    }
+}

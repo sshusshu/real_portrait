@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import './scss/default/reset.css'
+import './scss/style/index.css'
+import Drawing from './components/Drawing';
+import Header from './components/Header'
+import MsgBox from './components/MsgBox';
+import * as faceapi from 'face-api.js';
+
+import React, { useState,useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    const loadModels = async()=>{
+      const MODEL_URL = process.env.PUBLIC_URL + './models';
+      Promise.all([
+        faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
+        faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+      ]).then((res)=>{
+      })
+    }
+    loadModels();
+    }, []);
+    
+    
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Drawing faceapi={faceapi}/>
+      <MsgBox />
     </div>
   );
 }
