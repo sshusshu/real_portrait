@@ -1,7 +1,9 @@
-import { useRef } from "react"
+import KakaoBtn from "./buttons/KakaoBtn"
+import NaverBtn from "./buttons/NaverBtn"
+import FacebookBtn from "./buttons/FacebookBtn"
 
-export default function Buttons({onUpload,isDone,saveUrl,fileRef}){
-   
+export default function BtnBox({onUpload,isDone,saveUrl,fileRef}){
+
     return(
         <>
         <div className="btn-wrap">
@@ -12,8 +14,9 @@ export default function Buttons({onUpload,isDone,saveUrl,fileRef}){
             </div>
             <div className= {isDone?"download-btn":"download-btn hide"}>
                 <button className="download"><a href={saveUrl?saveUrl:''} download="sshu's drawing.jpg">Download</a></button>
-                <button>SNS 공유</button>
-                <button>SNS 공유</button>
+                <KakaoBtn />
+                <NaverBtn />
+                <FacebookBtn />
             </div>
         </div>
         </>

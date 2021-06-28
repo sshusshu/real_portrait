@@ -1,13 +1,13 @@
-import Buttons from "./Buttons";
+import BtnBox from "./BtnBox";
 import PreLoader from './PreLoader';
 import NotFound from './NotFound';
 
 import drawingFace from "../js/library/drawFace";
 import drawingCvs from "../js/library/drawCanvas";
-// import resizedImg from '../js/library/resizeImg';
 
-import { useEffect, useRef, useState, memo, useCallback } from "react";
-const Drawing = memo(({faceapi}) => { 
+import { useEffect, useRef, useState, memo } from "react";
+
+const Drawing = memo(({faceapi,setShareData}) => { 
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const drawRef = useRef(null);
@@ -17,20 +17,16 @@ const Drawing = memo(({faceapi}) => {
     
 
     let detecting,points,mh,mw;
-    let svgUrl;
 
     const [isLoading,setIsLoading] = useState(false);
     const [isNothing,setIsNothing] = useState(false);
     const [isDone,setIsDone] = useState(false);
     const [cvsW,setCvsW] = useState(0);
     const [cvsH,setCvsH] = useState(0);
-    const [context,setContext] = useState();
-    const [drawBox,setDrawBox] = useState();
+    const [context,setContext] = useState('');
+    const [drawBox,setDrawBox] = useState('');
 
-    const [imgLoad,setImgLoad] = useState(false);
-    const [saveUrl,setSaveUrl] = useState();
-
-    //const [file,setFile] = useState();
+    const [saveUrl,setSaveUrl] = useState('');
 
     useEffect(()=>{  
     console.log('//effect')
@@ -38,7 +34,7 @@ const Drawing = memo(({faceapi}) => {
          setContext(canvas.current.getContext('2d'))
          ctxRef.current = context
          setDrawBox(drawRef.current)
-    },[])
+    },[context])
 
 
     async function landmarks(faceapi){
@@ -122,7 +118,8 @@ const Drawing = memo(({faceapi}) => {
                 canvas2.current.width = mw;
                 canvas2.current.height = mh;
                 context2.drawImage(img, 0, 0, mw, mh);
-                setSaveUrl(canvas2.current.toDataURL('image/jpg'))
+                setSaveUrl(canvas2.current.toDataURL('image/jpg'));
+                setShareData(canvas2.current.toDataURL('image/jpg'))
             }
             img.src = blobURL;
     }
@@ -137,7 +134,7 @@ const Drawing = memo(({faceapi}) => {
                 <div ref={drawRef} className="img-box"></div>
             </div>
         </section>
-        <Buttons onUpload={onUpload} isDone={isDone} saveUrl={saveUrl} fileRef={fileRef} />
+        <BtnBox onUpload={onUpload} isDone={isDone} saveUrl={saveUrl} fileRef={fileRef} />
         </>
     )
 })

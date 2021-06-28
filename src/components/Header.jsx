@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function Header(){
@@ -7,8 +8,8 @@ export default function Header(){
             <h1><a href="/">logo</a></h1>
             <nav>
                 <ul>
-                    <li><a href="/">드로잉</a></li>
-                    <li><a href="/">방명록</a></li>
+                    <li><Link to="/">드로잉</Link></li>
+                    <li><Link to="/msg">방명록</Link></li>
                 </ul>
             </nav>
         </header>

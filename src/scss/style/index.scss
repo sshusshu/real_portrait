@@ -201,4 +201,31 @@ header{
             width: 30%;
         }
     }
+    .msg-item{
+      display: flex;
+      border: 1px solid #999;
+      margin-top:10px;
+      .msg-drawing{
+        width: 30%;
+        background: #fff;
+      }
+      .msg-content{
+        position:relative;
+        width: 70%;
+        padding:10px 20px;
+        p{margin-top: 10px;}
+        .msg-btn{
+          position:absolute;
+          top: 0;
+          right: 0;
+         // transform: translate3d(0,-50%,0);
+          opacity: 0;
+        }
+        &:hover{
+          .msg-btn{
+            opacity: 1;
+          }
+        }
+      }
+    }
 }

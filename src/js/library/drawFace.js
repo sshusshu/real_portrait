@@ -42,10 +42,10 @@ export default function drawingFace(box,points,mw,mh){
         radius :(points[33]._y-points[30]._y)/2
     }
     const chin = points[8]._y + 5
-    const lastPoint = {
-        x: points[26]._x,
-        y: points[26]._y-100
-    }
+    // const lastPoint = {
+    //     x: points[26]._x,
+    //     y: points[26]._y-100
+    // }
     box.style.top = `${mh}px`
     box.innerHTML =
         `<svg width="${mw}" height="${mh}" viewBox="0 0 ${mw} ${mh}">    

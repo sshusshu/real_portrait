@@ -237,4 +237,38 @@ header nav ul li {
 .msg-wrap form button {
   width: 30%;
 }
+
+.msg-wrap .msg-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #999;
+  margin-top: 10px;
+}
+
+.msg-wrap .msg-item .msg-drawing {
+  width: 30%;
+  background: #fff;
+}
+
+.msg-wrap .msg-item .msg-content {
+  position: relative;
+  width: 70%;
+  padding: 10px 20px;
+}
+
+.msg-wrap .msg-item .msg-content p {
+  margin-top: 10px;
+}
+
+.msg-wrap .msg-item .msg-content .msg-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.msg-wrap .msg-item .msg-content:hover .msg-btn {
+  opacity: 1;
+}
 /*# sourceMappingURL=index.css.map */
