@@ -1,6 +1,7 @@
-import { readDB } from '../dbController.js'
+import { readDB,writeDB } from '../dbController.js'
 
-const getUsers = () => readDB('users')
+const getUsers = () => readDB('users');
+const setUsers = () => writeDB('users');
 
 const usersRoute = [
   {

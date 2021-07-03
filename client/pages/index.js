@@ -1,5 +1,6 @@
 import Drawing from '../components/Drawing';
 import Header from '../components/Header';
+// import IdBox from '../components/IdBox';
 import * as faceapi from 'face-api.js';
 
 import React, { useEffect } from 'react'
@@ -22,8 +23,6 @@ const Home = () => {
     <div className="App">
       <Header />
          <Drawing faceapi={faceapi}/>
-         {/* <MsgBox /> */}
-         {/* <ShareBox/> */}
     </div>
   )
 
