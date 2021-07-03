@@ -6,16 +6,18 @@ import {useRouter} from 'next/router'
 
 
 const MsgList = () =>{
+    const router = useRouter();
     const {query:{userId=''}} = useRouter();
     const [msgs,setMsgs] = useState([]);
 
     const onCreate = async (text,userId) =>{
         const newMsg = await fetcher('post','/messages',{text,userId})
+        router.push(`/msg?userId=${userId}`)
         if(!newMsg) return
         setMsgs(msgs=>[newMsg,...msgs])
     }
 
-    const onUpdate = async(text,userId,id) => {
+    const onUpdate = async(text,_,id) => {
         const newMsg = await fetcher('put',`/messages/${id}`,{text,userId})
         if(!newMsg) return
         setMsgs(msgs=>{
