@@ -46,7 +46,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.2);
+    background: #fff;
     z-index: 10;
 }
 .preloader{
@@ -60,12 +60,20 @@ header{
         left: 50%;
         transform:translate3d(-50%,-50%,0);
       }
-      svg{
-        #loading-line{
-
-        };
-      }
+      #loading-line{
+        animation: spin 10s linear infinite; 
+        stroke-dasharray: 2790;
+        stroke-dashoffset: 0;
+        fill:none;
+        stroke:#000;
+        stroke-width: 2px;
+      };
+      
     }
+}
+@keyframes spin {
+  from{transform: rotate(0deg);stroke-dashoffset: 2790;}
+  to{transform: rotate(360deg);stroke-dashoffset: 0;}
 }
 
 .alert{

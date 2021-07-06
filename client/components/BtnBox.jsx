@@ -17,7 +17,7 @@ export default function BtnBox({onUpload,isDone,saveUrl,fileRef}){
                 <button className="download"><a href={saveUrl?saveUrl:''} download="sshu's drawing.jpg">Download</a></button>
                 <KakaoBtn />
                 <NaverBtn />
-                <FacebookBtn />
+                <FacebookBtn url={saveUrl}/>
                 <button className="comments"><Link href="/msg">Comments</Link></button>
             </div>
         </div>

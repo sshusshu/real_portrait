@@ -3,8 +3,9 @@ export default function FacebookBtn({url}){
 
 
     const createFbBtn = () => {
-        // window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://naver.com/'))
-        window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url))
+        //  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://naver.com/'))
+         window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://sshusshu.github.io/pre-portfolio/'))
+         //window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url))
         console.log('url',url)
        // window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}}`)
     }

@@ -95,10 +95,9 @@ const Drawing = memo(({faceapi}) => {
                 return;
             }
             setIsLoading(false);
-            drawingCvs(points,context)
+            drawingCvs(points,context);
             drawingFace(drawBox,points,mw,mh);
-            saveDrawing(drawBox.children[0])
-            // downloadBtn.setAttribute('href',svgUrl)
+            saveDrawing(drawBox.children[0]);
         }
         drawStart();
     }
