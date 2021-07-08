@@ -13,5 +13,8 @@
   "scripts": {
     "client": "yarn workspace client start",
     "server": "yarn workspace server start"
+  },
+  "dependencies": {
+    "react-helmet": "^6.1.0"
   }
 }

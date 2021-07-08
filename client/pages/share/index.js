@@ -1,6 +1,14 @@
+import { useState } from "react";
+import fetcher from "../../fetcher";
 
-export default function ShareBox({url}){
-  
+
+export default function ShareBox(){
+  let [url,setUrl] = useState('');
+  (async() => {
+    const newDrw = await fetcher('get','/share')  ;
+    console.log(newDrw[0].dataUri)
+    setUrl(newDrw[0].dataUri)
+  })()
   return(
       <>
       <div className="share-box">

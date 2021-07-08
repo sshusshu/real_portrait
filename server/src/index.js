@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import messagesRoute from './routes/messages.js'
 import usersRoute from './routes/users.js'
+import drawingsRoute from './routes/drawings.js'
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -14,7 +15,7 @@ app.use(
   }),
 )
 
-const routes = [...messagesRoute, ...usersRoute]
+const routes = [...messagesRoute, ...usersRoute, ...drawingsRoute]
 routes.forEach(({ method, route, handler }) => {
   app[method](route, handler)
 })

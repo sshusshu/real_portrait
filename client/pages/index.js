@@ -3,7 +3,7 @@ import Header from '../components/Header';
 // import IdBox from '../components/IdBox';
 import * as faceapi from 'face-api.js';
 
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
 const Home = () => {
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="App">
       <Header />
-         <Drawing faceapi={faceapi}/>
+      <Drawing faceapi={faceapi}/>
     </div>
   )
 

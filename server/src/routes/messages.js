@@ -1,8 +1,8 @@
 import { v4 } from 'uuid'
 import { readDB, writeDB } from '../dbController.js'
 
-const getMsgs = () => readDB('messages')
-const setMsgs = data => writeDB('messages', data)
+const getMsgs = () => readDB('messages');
+const setMsgs = data => writeDB('messages', data);
 
 const messagesRoute = [
   {

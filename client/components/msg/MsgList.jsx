@@ -21,10 +21,10 @@ const MsgList = () =>{
         const newMsg = await fetcher('put',`/messages/${id}`,{text,userId})
         if(!newMsg) return
         setMsgs(msgs=>{
-            const newMsgs = [...msgs]
+            const newMsgs = [...msgs];
             const idx = msgs.findIndex(msg=>msg.id===id);
-            newMsgs.splice(idx,1, newMsg) 
-            return newMsgs
+            newMsgs.splice(idx,1, newMsg);
+            return newMsgs;
         })
 
     }

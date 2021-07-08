@@ -8,6 +8,8 @@ import drawingCvs from "../pages/js/drawCanvas";
 
 
 import { useEffect, useRef, useState, memo } from "react";
+import fetcher from "../fetcher";
+import router, { useRouter } from "next/router";
 
 const Drawing = memo(({faceapi}) => { 
     const canvasRef = useRef(null);
@@ -102,6 +104,11 @@ const Drawing = memo(({faceapi}) => {
         drawStart();
     }
 
+
+    const onShareCreate = async(dataUri) =>{
+        const newDrw = await fetcher('post','/share',{dataUri})
+        if(!newDrw) return     
+    }
    
     function saveDrawing(svg) {
         svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -122,9 +129,12 @@ const Drawing = memo(({faceapi}) => {
                 context2.drawImage(img, 0, 0, mw, mh);
                 setSaveUrl(canvas2.current.toDataURL('image/jpg'));
                 setShareData(canvas2.current.toDataURL('image/jpg'));
+                onShareCreate(canvas2.current.toDataURL('image/jpg'));
             }
             img.src = blobURL;
     }
+
+
 
 
     return(
@@ -138,7 +148,6 @@ const Drawing = memo(({faceapi}) => {
             </div>
         </section>
         <BtnBox onUpload={onUpload} isDone={isDone} saveUrl={saveUrl} fileRef={fileRef} />
-        <ShareBox url={shareData}/>
         </>
     )
 })
