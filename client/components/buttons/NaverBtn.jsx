@@ -2,9 +2,9 @@
 export default function NaverBtn(){
     return(
         <>
-        <div className="">
-            
-        </div>
+            <button id="naver-link-btn">
+                <img src="/img/naver.svg" alt="naver-share-icon" />
+            </button>
         </>
     )
 };

@@ -3,12 +3,12 @@
 // import {useRouter} from 'next/router';
 import Link from 'next/link';
 
-export default function Header(){    
+export default function Header(){
    //const router = useRouter();
     return(
         <>
         <header>
-            <h1><Link href="/"><img src="/img/logo.jpg"></img></Link></h1>
+            <h1><Link href="/"><img src="/img/logo2.svg"></img></Link></h1>
             <nav>
                 <ul>
                     <li><Link href="/">드로잉</Link></li>

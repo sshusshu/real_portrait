@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 $content-width : 500px;
 
 .show{display: block!important;}
@@ -7,14 +8,15 @@ $content-width : 500px;
 
 button{
     display: inline-block;
-    padding: .5em .75em;
+    padding: 0 .75em;
+    height: 40px;
     color: #fff;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
     cursor: pointer;
     border-radius: .25em;
-    background-color: #000;   
+    background-color: #000;
 }
 body{
   font-family: 'Nanum Gothic', sans-serif;
@@ -24,11 +26,11 @@ header{
     position:relative;
     padding: 50px;
     h1{
-       text-align: center; 
+       text-align: center;
        cursor: pointer;
       //  width: 200px;
        img{
-         width: 200px;
+         width: 150px;
        }
     }
     nav{
@@ -69,14 +71,14 @@ header{
         transform:translate3d(-50%,-50%,0);
       }
       #loading-line{
-        animation: spin 10s linear infinite; 
+        animation: spin 10s linear infinite;
         stroke-dasharray: 2790;
         stroke-dashoffset: 0;
         fill:none;
         stroke:#000;
         stroke-width: 2px;
       };
-      
+
     }
 }
 @keyframes spin {
@@ -115,7 +117,7 @@ header{
       top: 0;
       left: 0;
       z-index: 1;
-      // visibility: hidden;
+       visibility: hidden;
     }
     .drawing-box{
       position:absolute;
@@ -148,7 +150,25 @@ header{
     margin: 0 auto;
     margin-top: 30px;
     text-align: center;
-        
+  .ico-mask{
+    position: relative;
+    width: 9px;
+    height: 16px;
+    display: inline-block;
+    overflow: hidden;
+    .ico-1,.ico-2{
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      background-image: url("/img/arrow_down_w.svg");
+      background-size:contain;
+      background-repeat: no-repeat;
+      transition: transform 0.5s ease-in-out;
+    }
+  }
     .upload-btn{
         input[type="file"]{
         position: absolute;
@@ -174,7 +194,6 @@ header{
             background-color: #000;
         }
         }
-
         .upload-name {
         display: inline-block;
         padding: .5em .75em;
@@ -190,16 +209,125 @@ header{
         -moz-appearance: none;
         appearance: none;
         }
+      .ico-mask{
+        border-top:2px solid #fff;
+        margin-top:1px;
+        .ico-1{transform:translate3d(0,0,0)rotate(180deg);}
+        .ico-2{transform:translate3d(0,105%,0) rotate(180deg);}
+      }
+      &:hover{
+        .ico-mask{
+          .ico-1{
+            transform:translate3d(0,-105%,0)rotate(180deg);
+          }
+          .ico-2{
+            transform:translate3d(0,0,0)rotate(180deg);
+          }
+        }
+      };
     }
     .download-btn{
         margin-top: 30px;
-        button{  
+        button{
             margin-left: 10px;
             &:first-child{
                 margin-left: 0;
-            } 
+            }
         }
+      .ico-mask{
+        border-bottom:2px solid #fff;
+        margin-bottom:-2px;
+        .ico-1{transform:translate3d(0,-105%,0);}
+        .ico-2{transform:translate3d(0,0,0);}
+      }
+      &:hover{
+        .ico-mask{
+          .ico-1{
+            transform:translate3d(0,0,0);
+          }
+          .ico-2{
+            transform:translate3d(0,105%,0);
+          }
+        }
+      };
     }
+  #kakao-link-btn{
+    margin-left: 10px;
+    img{
+      width: 30px;
+    }
+  }
+  #naver-link-btn{
+    img{
+      width: 30px;
+    }
+  }
+  #facebook-link-btn{
+    img{
+      width: 23px;
+    }
+  }
+  #kakao-link-btn,#naver-link-btn, #facebook-link-btn{
+    width: 50px;
+    height: 40px;
+    &:hover{
+      img{
+        animation: bounce 1s ;
+      };
+    }
+  };
+  .download{
+    .ico-mask{
+      margin-left: 5px;
+    }
+  }
+  .comment{
+    img{
+      width: 18px;
+      margin-left: 5px;
+    }
+  }
+  .sns-share{
+    margin-top: 10px;
+  }
+}
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -10px, 0) scaleY(1.1);
+    transform: translate3d(0, -10px, 0) scaleY(1.1);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -5px, 0) scaleY(1.05);
+    transform: translate3d(0, -5px, 0) scaleY(1.05);
+  }
+
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0) scaleY(0.95);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+    transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+  }
 }
 
 

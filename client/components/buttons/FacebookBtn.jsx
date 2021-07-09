@@ -8,9 +8,8 @@ export default function FacebookBtn({url}){
 
     return(
         <>
-         <button onClick={createFbBtn}>
-             페이스북
-             {/* <img src={facebook} alt="facebook"/> */}
+         <button id="facebook-link-btn" onClick={createFbBtn}>
+              <img src="/img/facebook2.svg" alt="facebook"/>
          </button>
         </>
     )

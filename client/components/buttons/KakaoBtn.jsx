@@ -63,8 +63,7 @@ export default function KakaoBtn(){
     return(
         <>
             <button id="kakao-link-btn" onClick={createKakaoBtn}>
-                카카오톡
-                {/* <img src="/icons/kakao.png" alt="kakao-share-icon" />  */}
+                 <img src="/img/kakao2.svg" alt="kakao-share-icon" />
             </button>
         </>
     )
