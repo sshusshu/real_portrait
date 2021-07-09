@@ -8,7 +8,7 @@ export default function Header(){
     return(
         <>
         <header>
-            <h1><a href="/">logo</a></h1>
+            <h1><Link href="/"><img src="/img/logo.jpg"></img></Link></h1>
             <nav>
                 <ul>
                     <li><Link href="/">드로잉</Link></li>

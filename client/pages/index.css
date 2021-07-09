@@ -6,6 +6,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 html {
   line-height: 1.15;
   /* 1 */
@@ -704,6 +705,10 @@ button {
   background-color: #000;
 }
 
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
 header {
   position: relative;
   padding: 50px;
@@ -711,6 +716,11 @@ header {
 
 header h1 {
   text-align: center;
+  cursor: pointer;
+}
+
+header h1 img {
+  width: 200px;
 }
 
 header nav {
@@ -830,7 +840,6 @@ header nav ul li {
   top: 0;
   left: 0;
   z-index: 1;
-  visibility: hidden;
 }
 
 .drawing-container .drawing-box {

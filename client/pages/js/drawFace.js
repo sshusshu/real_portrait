@@ -46,9 +46,9 @@ export default function drawingFace(box,points,mw,mh){
     //     x: points[26]._x,
     //     y: points[26]._y-100
     // }
-    box.style.top = `${mh}px`
+    // box.style.top = `${mh}px`
     box.innerHTML =
-        `<svg width="${mw}" height="${mh}" viewBox="0 0 ${mw} ${mh}">    
+        `<svg width="${mw-50}" height="${mh+200}" viewBox="0 0 ${mw} ${mh}">    
     <path id="line"
           d="M ${points[17]._x}, ${points[17]._y-100}
              C ${points[17]._x-20},${points[17]._y-95} 
