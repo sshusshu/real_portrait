@@ -10,13 +10,9 @@ export default function Header(){
         <header>
             <h1><Link href="/"><img src="/img/logo2.svg"></img></Link></h1>
             <nav>
-                <ul>
-                    <li><Link href="/">드로잉</Link></li>
-                    <li><Link href="/msg">방명록</Link></li>
-                    <li><Link href="/share">공유</Link></li>
-                    {/* <li><a onClick={()=> router.push('/')}>드로잉</a></li>
-                    <li><a onClick={()=> router.push('/msg')}>방명록</a></li> */}
-                </ul>
+                <Link href="/msg">
+                <img src="img/comment_bk.svg"/>
+                </Link>
             </nav>
         </header>
         </>

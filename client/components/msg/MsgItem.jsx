@@ -23,8 +23,8 @@ export default function MsgItem({id,userId,timestamp,text,onUpdate,onDelete,myId
                     }       
                     {myId === userId && (
                         <div className="msg-btn">
-                            <button onClick={onReadyEdit}>수정</button>
-                            <button onClick={onDelete}>삭제</button>
+                            <button onClick={onReadyEdit}><img src="/img/comment_w.svg" ></img></button>
+                            <button onClick={onDelete}><img src="/img/comment_w.svg" ></img></button>
                         </div>
                     )}      
                 </div>  

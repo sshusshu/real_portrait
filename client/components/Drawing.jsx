@@ -57,12 +57,14 @@ const Drawing = memo(({faceapi}) => {
         }
 
         customPoints = {
-            point25 : forheadPoint(points[25]),
-            point23 : forheadPoint(points[23]),         
-            point27 : forheadPoint(points[27]),
-            point21 : forheadPoint(points[21]),
-            point19 : forheadPoint(points[19]),
+            point17 : forheadPoint(points[17]),
             point18 : forheadPoint(points[18]),
+            point19 : forheadPoint(points[19]),
+            point21 : forheadPoint(points[21]),
+            point23 : forheadPoint(points[23]),  
+            point25 : forheadPoint(points[25]),       
+            point26 : forheadPoint(points[26]),       
+            point27 : forheadPoint(points[27]),
         }
         
     }
@@ -75,16 +77,17 @@ const Drawing = memo(({faceapi}) => {
     }
     
     function getForheadY(point){
-        const pointY = Math.floor(point._y);
         const pointX = Math.floor(point._x);
+        const pointY = Math.floor(point._y);
         let maxColor = 0;
         let maxPoint = 0;
         let prePointColor;
-        for(let i = 80; i<pointY;i++){
+        for(let i = 20; i<pointY-20;i++){
             const pointPixel = newImgArr[i].slice(pointX*4,pointX*4+4);
             const pointColor = pointPixel[0]+pointPixel[1]+pointPixel[2];
-            const pointDiff = pointColor-prePointColor;
-            if(maxColor<pointDiff){
+            const pointDiff = Math.abs(pointColor-prePointColor);
+
+            if(maxColor<pointDiff && pointDiff>20 && !isNaN(pointDiff) ){
                 maxColor = pointDiff;
                 maxPoint = i
             }
@@ -93,6 +96,8 @@ const Drawing = memo(({faceapi}) => {
 
         return maxPoint
     }
+
+
 
     async function resizedImg(faceapi,file){
         //업로드하는 이미지 크기가 제각각이라 드로잉이 중구난방으로 그려짐
@@ -113,9 +118,9 @@ const Drawing = memo(({faceapi}) => {
         // 최소 xy, 최대 xy 구할 때, map과 math.min, math.max로 6번 반복문 돌렸었음.. 
         //왜그랬을까?.. -> array[idx]로 바로 접근한 방법으로 수정 
         
-        const sx = point[0]._x-150;
-        const sy = point[19]._y-350;
-        const ex = point[16]._x+150;
+        const sx = point[0]._x-50;
+        const sy = point[19]._y-200;
+        const ex = point[16]._x+50;
         const ey = point[8]._y+20;
         mw = 350;
         mh = (mw*(ey-sy))/(ex-sx);

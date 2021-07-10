@@ -34,10 +34,13 @@ header{
        }
     }
     nav{
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      /* bottom: 0; */
+      transform: translate3d(0, -50%, 0);
+      margin-right: 30px;
+      cursor: pointer;
        ul{
             display: flex;
             li{
@@ -108,16 +111,18 @@ header{
 .drawing-container{
     position: relative;
     width: $content-width;
-    height: 500px;
+    height: 400px;
     margin: 0 auto;
-    background: #fff;
-    border:1px solid #999;
+    background: #fafaff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     canvas{
       position: absolute;
       top: 0;
       right: 0;
       z-index: 1;
-      //  visibility: hidden;
+       visibility: hidden;
     }
     .drawing-box{
       position:absolute;
@@ -131,7 +136,7 @@ header{
       stroke:#000000;
       stroke-width:1;
       stroke-linecap:round;
-      stroke-dasharray: 4000; /*이 값은 path의 길이와 동일합니다*/
+      stroke-dasharray: 4000;
       stroke-dashoffset: 0;
       animation: dash 8s linear;
     }
@@ -234,22 +239,25 @@ header{
                 margin-left: 0;
             }
         }
-      .ico-mask{
-        border-bottom:2px solid #fff;
-        margin-bottom:-2px;
-        .ico-1{transform:translate3d(0,-105%,0);}
-        .ico-2{transform:translate3d(0,0,0);}
-      }
-      &:hover{
-        .ico-mask{
-          .ico-1{
-            transform:translate3d(0,0,0);
+        .download{
+          .ico-mask{
+            border-bottom:2px solid #fff;
+            margin-bottom:-2px;
+            .ico-1{transform:translate3d(0,-105%,0);}
+            .ico-2{transform:translate3d(0,0,0);}
           }
-          .ico-2{
-            transform:translate3d(0,105%,0);
-          }
+          &:hover{
+            .ico-mask{
+              .ico-1{
+                transform:translate3d(0,0,0);
+              }
+              .ico-2{
+                transform:translate3d(0,105%,0);
+              }
+            }
+          };
         }
-      };
+    
     }
   #kakao-link-btn{
     margin-left: 10px;
@@ -336,19 +344,30 @@ header{
     margin: 0 auto;
     form{
         width: 100%;
-        background: #000;
         display: flex;
+        border:1px solid #e2e2e2;
+        margin-bottom: 30px;
+        input{
+          width: 30%;
+          padding:20px;
+          border:none;
+          &:focus{
+            outline:none;
+            outline-color: transparent;
+          }
+        }
         textarea{
-            width: 70%;
-            border:1px solid #e2e2e2;
+            width: 50%;
+            margin-top:20px;
         }
         button{
-            width: 30%;
+            width: 20%;
+            height: auto;
         }
     }
     .msg-item{
       display: flex;
-      border: 1px solid #999;
+      border: 1px solid #e2e2e2;
       margin-top:10px;
       .msg-drawing{
         width: 30%;
@@ -356,15 +375,33 @@ header{
       }
       .msg-content{
         position:relative;
-        width: 70%;
-        padding:10px 20px;
-        p{margin-top: 10px;}
+        width: 100%;
+        padding:20px 20px;
+        display: flex;
+        h3{
+          sub{
+            margin-left: 10px;
+            color:#999;
+            font-size: 12px;
+            bottom: 0;
+          }
+        }
+        p{margin-left: 20px;}
         .msg-btn{
           position:absolute;
-          top: 0;
+          top: -15px;
           right: 0;
          // transform: translate3d(0,-50%,0);
           opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+          button{
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            img{
+              width: 100%;
+            }
+          }
         }
         &:hover{
           .msg-btn{

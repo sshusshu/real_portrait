@@ -34,7 +34,7 @@ export default function BtnBox({onUpload,isDone,saveUrl,fileRef}){
                         <Link href="/msg">
                         <span>
                         Review
-                        <img src="img/comment2.svg"/>
+                        <img src="img/comment_w.svg"/>
                         </span>
                         </Link>
                     </button>
