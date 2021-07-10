@@ -14,7 +14,6 @@ export default function MsgItem({id,userId,timestamp,text,onUpdate,onDelete,myId
     return(
         <>
             <li className="msg-item">
-                <div className="msg-drawing"></div>
                 <div className="msg-content">
                     <h3>{userId}<sub>{timestamp}</sub></h3>
                     {isEditing?
