@@ -115,9 +115,9 @@ header{
     canvas{
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       z-index: 1;
-       visibility: hidden;
+      //  visibility: hidden;
     }
     .drawing-box{
       position:absolute;

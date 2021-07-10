@@ -695,7 +695,8 @@ iframe[name^='google_'] {
 
 button {
   display: inline-block;
-  padding: .5em .75em;
+  padding: 0 .75em;
+  height: 40px;
   color: #fff;
   font-size: inherit;
   line-height: normal;
@@ -720,7 +721,7 @@ header h1 {
 }
 
 header h1 img {
-  width: 200px;
+  width: 150px;
 }
 
 header nav {
@@ -838,7 +839,7 @@ header nav ul li {
 .drawing-container canvas {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 1;
 }
 
@@ -892,6 +893,30 @@ header nav ul li {
   text-align: center;
 }
 
+.btn-wrap .ico-mask {
+  position: relative;
+  width: 9px;
+  height: 16px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.btn-wrap .ico-mask .ico-1, .btn-wrap .ico-mask .ico-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-image: url("/img/arrow_down_w.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
 .btn-wrap .upload-btn input[type="file"] {
   position: absolute;
   width: 1px;
@@ -935,6 +960,31 @@ header nav ul li {
   appearance: none;
 }
 
+.btn-wrap .upload-btn .ico-mask {
+  border-top: 2px solid #fff;
+  margin-top: 1px;
+}
+
+.btn-wrap .upload-btn .ico-mask .ico-1 {
+  -webkit-transform: translate3d(0, 0, 0) rotate(180deg);
+          transform: translate3d(0, 0, 0) rotate(180deg);
+}
+
+.btn-wrap .upload-btn .ico-mask .ico-2 {
+  -webkit-transform: translate3d(0, 105%, 0) rotate(180deg);
+          transform: translate3d(0, 105%, 0) rotate(180deg);
+}
+
+.btn-wrap .upload-btn:hover .ico-mask .ico-1 {
+  -webkit-transform: translate3d(0, -105%, 0) rotate(180deg);
+          transform: translate3d(0, -105%, 0) rotate(180deg);
+}
+
+.btn-wrap .upload-btn:hover .ico-mask .ico-2 {
+  -webkit-transform: translate3d(0, 0, 0) rotate(180deg);
+          transform: translate3d(0, 0, 0) rotate(180deg);
+}
+
 .btn-wrap .download-btn {
   margin-top: 30px;
 }
@@ -945,6 +995,140 @@ header nav ul li {
 
 .btn-wrap .download-btn button:first-child {
   margin-left: 0;
+}
+
+.btn-wrap .download-btn .ico-mask {
+  border-bottom: 2px solid #fff;
+  margin-bottom: -2px;
+}
+
+.btn-wrap .download-btn .ico-mask .ico-1 {
+  -webkit-transform: translate3d(0, -105%, 0);
+          transform: translate3d(0, -105%, 0);
+}
+
+.btn-wrap .download-btn .ico-mask .ico-2 {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.btn-wrap .download-btn:hover .ico-mask .ico-1 {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.btn-wrap .download-btn:hover .ico-mask .ico-2 {
+  -webkit-transform: translate3d(0, 105%, 0);
+          transform: translate3d(0, 105%, 0);
+}
+
+.btn-wrap #kakao-link-btn {
+  margin-left: 10px;
+}
+
+.btn-wrap #kakao-link-btn img {
+  width: 30px;
+}
+
+.btn-wrap #naver-link-btn img {
+  width: 30px;
+}
+
+.btn-wrap #facebook-link-btn img {
+  width: 23px;
+}
+
+.btn-wrap #kakao-link-btn, .btn-wrap #naver-link-btn, .btn-wrap #facebook-link-btn {
+  width: 50px;
+  height: 40px;
+}
+
+.btn-wrap #kakao-link-btn:hover img, .btn-wrap #naver-link-btn:hover img, .btn-wrap #facebook-link-btn:hover img {
+  -webkit-animation: bounce 1s;
+          animation: bounce 1s;
+}
+
+.btn-wrap .download .ico-mask {
+  margin-left: 5px;
+}
+
+.btn-wrap .comment img {
+  width: 18px;
+  margin-left: 5px;
+}
+
+.btn-wrap .sns-share {
+  margin-top: 10px;
+}
+
+@-webkit-keyframes bounce {
+  from,
+  20%,
+  53%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -10px, 0) scaleY(1.1);
+    transform: translate3d(0, -10px, 0) scaleY(1.1);
+  }
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -5px, 0) scaleY(1.05);
+    transform: translate3d(0, -5px, 0) scaleY(1.05);
+  }
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0) scaleY(0.95);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+    transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+  }
+}
+
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -10px, 0) scaleY(1.1);
+    transform: translate3d(0, -10px, 0) scaleY(1.1);
+  }
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -5px, 0) scaleY(1.05);
+    transform: translate3d(0, -5px, 0) scaleY(1.05);
+  }
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0) scaleY(0.95);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+    transform: translate3d(0, -1.5px, 0) scaleY(1.02);
+  }
 }
 
 .msg-wrap {

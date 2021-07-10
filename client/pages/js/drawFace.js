@@ -1,5 +1,5 @@
 
-export default function drawingFace(box,points,mw,mh){
+export default function drawingFace(box,points,mw,mh,customPoints){
     const leftEye = {
         r:{
             x:points[39]._x + 7,
@@ -41,7 +41,10 @@ export default function drawingFace(box,points,mw,mh){
         },
         radius :(points[33]._y-points[30]._y)/2
     }
-    const chin = points[8]._y + 5
+    const chin = points[8]._y + 5;
+    
+    console.log(customPoints)
+
     // const lastPoint = {
     //     x: points[26]._x,
     //     y: points[26]._y-100
@@ -50,12 +53,7 @@ export default function drawingFace(box,points,mw,mh){
     box.innerHTML =
         `<svg width="${mw-50}" height="${mh+200}" viewBox="0 0 ${mw} ${mh}">    
     <path id="line"
-          d="M ${points[17]._x}, ${points[17]._y-100}
-             C ${points[17]._x-20},${points[17]._y-95} 
-               ${points[17]._x-20},${points[17]._y+5}
-               ${points[17]._x}, ${points[17]._y}
-               
-             L ${points[18]._x-5},${points[18]._y}
+          d="M ${points[18]._x-5},${points[18]._y}
              C ${points[18]._x+10},${points[18]._y-10}
                ${leftEye.r.x},${points[21]._y}
                ${leftEye.r.x},${points[21]._y}
@@ -343,6 +341,13 @@ export default function drawingFace(box,points,mw,mh){
               C ${points[26]._x+25},${points[26]._y-10} 
                ${points[26]._x+20}, ${points[26]._y-90}
                ${points[26]._x}, ${points[26]._y-100}
+
+               L ${customPoints.point25._x},${customPoints.point25._y} 
+               L ${customPoints.point23._x},${customPoints.point23._y} 
+               L ${customPoints.point27._x},${customPoints.point27._y} 
+               L ${customPoints.point21._x},${customPoints.point21._y} 
+               L ${customPoints.point19._x},${customPoints.point19._y} 
+               L ${customPoints.point18._x},${customPoints.point18._y} 
            " 
             />
     </svg>`

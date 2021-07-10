@@ -21,7 +21,8 @@ const Drawing = memo(({faceapi}) => {
     
     const [shareData,setShareData] = useState(null);
 
-    let detecting,points,mh,mw;
+    let detecting,points,customPoints,mh,mw;
+    let newImgArr = [];
 
     const [isLoading,setIsLoading] = useState(false);
     const [isNothing,setIsNothing] = useState(false);
@@ -48,27 +49,82 @@ const Drawing = memo(({faceapi}) => {
             .detectSingleFace(canvas.current)
             .withFaceLandmarks()
         points = detecting.landmarks.positions;
+        
+        const imgArr = context.getImageData(0,0,mw,mh).data;
+        // 머리 부분 포인트를 찾기 위해 이미지 배열을 2차원 배열로 변경 
+        for(let i = 0; i<imgArr.length;i+=(4*mw)){
+            newImgArr.push([...imgArr.slice(i,i+4*mw)])
+        }
+
+        customPoints = {
+            point25 : forheadPoint(points[25]),
+            point23 : forheadPoint(points[23]),         
+            point27 : forheadPoint(points[27]),
+            point21 : forheadPoint(points[21]),
+            point19 : forheadPoint(points[19]),
+            point18 : forheadPoint(points[18]),
+        }
+        
+    }
+
+    function forheadPoint (point){       
+        return {
+                _x:point._x,
+                _y:getForheadY(point)
+            }
+    }
+    
+    function getForheadY(point){
+        const pointY = Math.floor(point._y);
+        const pointX = Math.floor(point._x);
+        let maxColor = 0;
+        let maxPoint = 0;
+        let prePointColor;
+        for(let i = 80; i<pointY;i++){
+            const pointPixel = newImgArr[i].slice(pointX*4,pointX*4+4);
+            const pointColor = pointPixel[0]+pointPixel[1]+pointPixel[2];
+            const pointDiff = pointColor-prePointColor;
+            if(maxColor<pointDiff){
+                maxColor = pointDiff;
+                maxPoint = i
+            }
+            prePointColor = pointColor;
+        }
+
+        return maxPoint
     }
 
     async function resizedImg(faceapi,file){
+        //업로드하는 이미지 크기가 제각각이라 드로잉이 중구난방으로 그려짐
+        //이미지 크기 통일 필요 -> 얼굴포인트 기준으로 사진을 크롭해 캔버스에 다시 그려줌
+
         console.log('//resize')
         const image = await faceapi.bufferToImage(file.files[0]);
         const detect = await faceapi.detectSingleFace(image).withFaceLandmarks();
         const point = detect.landmarks.positions;
-        const arrX = point.map(a=>a._x);
-        const arrY = point.map(a=>a._y);
-        const sx = Math.min(...arrX)-200;
-        const sy = Math.min(...arrY)-400;
-        const ex = Math.max(...arrX)+200;
-        const ey = Math.max(...arrY)+20;
+       
+        // const arrX = point.map(a=>a._x); 
+        // const arrY = point.map(a=>a._y);
+        // const sx = Math.min(...arrX)-200;
+        // const sy = Math.min(...arrY)-400;
+        // const ex = Math.max(...arrX)+200;
+        // const ey = Math.max(...arrY)+20;
+
+        // 최소 xy, 최대 xy 구할 때, map과 math.min, math.max로 6번 반복문 돌렸었음.. 
+        //왜그랬을까?.. -> array[idx]로 바로 접근한 방법으로 수정 
+        
+        const sx = point[0]._x-150;
+        const sy = point[19]._y-350;
+        const ex = point[16]._x+150;
+        const ey = point[8]._y+20;
         mw = 350;
         mh = (mw*(ey-sy))/(ex-sx);
         setCvsW(mw);
         setCvsH(mh);
         context.drawImage(image,sx,sy,ex-sx,ey-sy,0,0,mw,mh);
-        console.dir(context.getImageData(0,0,mw,mh).data)
-
 }
+
+    
 
     const onReset = () =>{
     console.log('//reset')
@@ -100,7 +156,7 @@ const Drawing = memo(({faceapi}) => {
             }
             setIsLoading(false);
             drawingCvs(points,context);
-            drawingFace(drawBox,points,mw,mh);
+            drawingFace(drawBox,points,mw,mh,customPoints);
             saveDrawing(drawBox.children[0]);
         }
         drawStart();
