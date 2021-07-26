@@ -21,10 +21,6 @@ const drawingsRoute = [
     handler: ({ params: { id } }, res) => {
       try {
         const draws = getDrws();
-        console.log(params,id)
-        // const msg = msgs.find(m => m.id === id)
-        // if (!msg) throw Error('not found')
-        // res.send(msg)
       } catch (err) {
         res.status(404).send({ error: err })
       }
