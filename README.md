@@ -13,14 +13,14 @@ _Keyword : React JS / SVG / NEXT JS / EXPRESS / WEBPACK_
 
 > 라인 드로잉을 그려주는 어플을 만들어 보고 싶어 기획, 디자인, 개발
 > 
-> face API 자바스크립트 버전을 사용   
+> 텐서플로우 기법을 이용한 face API 자바스크립트 버전을 사용   
 > 
 > 리액트 학습을 위해 리액트로 제작
 >
 > 서버 통신 학습을 위해 EXPRESS 사용
 
 ---
-
+<img src="https://user-images.githubusercontent.com/66768245/127098195-59698299-b8c0-4650-9c79-c748c074a6ee.gif">
 ## 🔳 코드구성  
 
 ### ✔️ 사진 업로드 시 FACE API를 통해 얼굴 좌표를 얻어 SVG로 그려줌 이 외에 다운로드, SNS 공유, 방명록 구현
@@ -84,11 +84,37 @@ _Keyword : React JS / SVG / NEXT JS / EXPRESS / WEBPACK_
     - 이마좌표 찾기 집적 구현  
       캔버스 이미지 이차원 배열에서 픽셀별 검색  
       눈썹과 관자놀이 코등의 좌표 x, y값을 받아 위로 y좌표들만을 검색하여 불필요한 검색 최소화  
-      아래 픽셀 칼라값과 가장 많은 차이가 나는 포인트를 좌표로 customPoints에 객체형태로 저장  
+      아래 픽셀 칼라값과 가장 많은 차이가 나는 포인트를 좌표로 customPoints에 객체형태로 저장 
+ ````js
+    async function landmarks(faceapi){
+        detecting = await faceapi
+            .detectSingleFace(canvas.current)
+            .withFaceLandmarks()
+        points = detecting.landmarks.positions;
+        
+        const imgArr = context.getImageData(0,0,mw,mh).data;
+        // 머리 부분 포인트를 찾기 위해 이미지 배열을 2차원 배열로 변경 
+        for(let i = 0; i<imgArr.length;i+=(4*mw)){
+            newImgArr.push([...imgArr.slice(i,i+4*mw)])
+        }
 
-    - 헤어 좌표 찾기 직접 구현(이마좌표와 비슷한 방법으로 구현)  
-      머신러닝 기법이 아니기 때문에 사진마다 편차가 존재하고 가끔 오류가 발생
-      => 앞으로 차근히 고쳐나갈 계획
+        customPoints = {
+            point17 : forheadPoint(points[17]),
+            point18 : forheadPoint(points[18]),
+            point19 : forheadPoint(points[19]),
+            point21 : forheadPoint(points[21]),
+            point23 : forheadPoint(points[23]),  
+            point25 : forheadPoint(points[25]),       
+            point26 : forheadPoint(points[26]),       
+            point27 : forheadPoint(points[27]),
+        }
+        
+    }
+````
+
+ - 헤어 좌표 찾기 직접 구현(이마좌표와 비슷한 방법으로 구현)  
+   머신러닝 기법이 아니기 때문에 사진마다 편차가 존재하고 가끔 오류가 발생
+   => 앞으로 차근히 고쳐나갈 계획
 
 3. 얼굴 크기 통일 시 
   - 문제 사항
@@ -96,7 +122,30 @@ _Keyword : React JS / SVG / NEXT JS / EXPRESS / WEBPACK_
       - 최소 xy, 최대 xy 구할 때, map과 math.min, math.max로 6번 반복문 사용
   - 문제 해결 방법
      - array[idx]로 바로 접근 방법으로 수정 
- 
+ ````js
+     async function resizedImg(faceapi,file){
+        const image = await faceapi.bufferToImage(file.files[0]);
+        const detect = await faceapi.detectSingleFace(image).withFaceLandmarks();
+        const point = detect.landmarks.positions;
+       
+        // const arrX = point.map(a=>a._x); 
+        // const arrY = point.map(a=>a._y);
+        // const sx = Math.min(...arrX)-200;
+        // const sy = Math.min(...arrY)-400;
+        // const ex = Math.max(...arrX)+200;
+        // const ey = Math.max(...arrY)+20;
+        
+        const sx = point[0]._x-50;
+        const sy = point[19]._y-200;
+        const ex = point[16]._x+50;
+        const ey = point[8]._y+20;
+        mw = 350;
+        mh = (mw*(ey-sy))/(ex-sx);
+        setCvsW(mw);
+        setCvsH(mh);
+        context.drawImage(image,sx,sy,ex-sx,ey-sy,0,0,mw,mh);
+}
+ ````
   
 ---
 
