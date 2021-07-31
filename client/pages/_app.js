@@ -1,4 +1,4 @@
-import './index.scss'
+import '../public/scss/index.scss'
 
 const App = ({ Component, pageProps }) => <Component {...pageProps} />
 

@@ -3,8 +3,8 @@ import PreLoader from './PreLoader';
 import NotFound from './NotFound';
 import ShareBox from "../pages/share/index";
 
-import drawingFace from "../pages/js/drawFace";
-import drawingCvs from "../pages/js/drawCanvas";
+import drawingFace from "../public/js/drawFace";
+import drawingCvs from "../public/js/drawCanvas";
 
 
 import { useEffect, useRef, useState, memo } from "react";
