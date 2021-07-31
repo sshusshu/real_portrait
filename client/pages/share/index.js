@@ -6,7 +6,6 @@ export default function ShareBox(){
   let [url,setUrl] = useState('');
   (async() => {
     const newDrw = await fetcher('get','/share')  ;
-    console.log(newDrw[0].dataUri)
     setUrl(newDrw[0].dataUri)
   })()
   return(
@@ -14,7 +13,7 @@ export default function ShareBox(){
       <div className="share-box">
         <img src={url} alt='drawing'></img>
       </div>
-      {console.log('sharebox',url)}
+      {/* {console.log('sharebox',url)} */}
       </>
   )
 };

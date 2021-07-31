@@ -6,7 +6,6 @@ import ShareBox from "../pages/share/index";
 import drawingFace from "../public/js/drawFace";
 import drawingCvs from "../public/js/drawCanvas";
 
-
 import { useEffect, useRef, useState, memo } from "react";
 import fetcher from "../fetcher";
 import router, { useRouter } from "next/router";
@@ -100,24 +99,10 @@ const Drawing = memo(({faceapi}) => {
 
 
     async function resizedImg(faceapi,file){
-        //업로드하는 이미지 크기가 제각각이라 드로잉이 중구난방으로 그려짐
-        //이미지 크기 통일 필요 -> 얼굴포인트 기준으로 사진을 크롭해 캔버스에 다시 그려줌
-
         console.log('//resize')
         const image = await faceapi.bufferToImage(file.files[0]);
         const detect = await faceapi.detectSingleFace(image).withFaceLandmarks();
         const point = detect.landmarks.positions;
-       
-        // const arrX = point.map(a=>a._x); 
-        // const arrY = point.map(a=>a._y);
-        // const sx = Math.min(...arrX)-200;
-        // const sy = Math.min(...arrY)-400;
-        // const ex = Math.max(...arrX)+200;
-        // const ey = Math.max(...arrY)+20;
-
-        // 최소 xy, 최대 xy 구할 때, map과 math.min, math.max로 6번 반복문 돌렸었음.. 
-        //왜그랬을까?.. -> array[idx]로 바로 접근한 방법으로 수정 
-        
         const sx = point[0]._x-50;
         const sy = point[19]._y-200;
         const ex = point[16]._x+50;
@@ -127,21 +112,22 @@ const Drawing = memo(({faceapi}) => {
         setCvsW(mw);
         setCvsH(mh);
         context.drawImage(image,sx,sy,ex-sx,ey-sy,0,0,mw,mh);
-}
+    }
 
     
-
     const onReset = () =>{
     console.log('//reset')
         setIsNothing(false);
         init()
     }
 
+
     const init = () =>{
     console.log('//init')
         setContext(ctxRef.current)
         drawBox.innerHTML = '';
     }   
+    
 
     const onUpload = () =>{
     console.log('//upload')
