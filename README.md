@@ -8,7 +8,9 @@
 * 방명록 기능 구현
 
 _Keyword : React JS / SVG / NEXT JS / EXPRESS / WEBPACK_
-   
+
+   [The Drawing 바로가기](https://sshusshu.github.io/real_portrait/)
+
 <img src="https://img.shields.io/badge/-html5-E34F26?style=flat&logo=html5&logoColor=00c8ff"> <img src="https://img.shields.io/badge/-Sass-cc6699?style=flat&logo=sass&logoColor=ffffff"> <img src="https://img.shields.io/badge/-JavaScript-eed718?style=flat&logo=javascript&logoColor=ffffff"> <img src="https://img.shields.io/badge/-React-000000?style=flat&logo=react&logoColor=00c8ff">  
 
 > 라인 드로잉을 그려주는 어플을 만들어 보고 싶어 기획, 디자인, 개발
