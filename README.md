@@ -1,3 +1,4 @@
+
 # Line portrait 
 
 ### face API를 사용하여 인물사진 업로드 시 얼굴의 주요 포인트 좌표를 얻어 svg 라인 드로잉으로 표현
@@ -38,9 +39,16 @@ _Keyword : React JS / SVG / NEXT JS / EXPRESS / WEBPACK_
     
 ### ✔️ 주요 이벤트
 
-1. 사진 업로드 : 업로드 한 사진을 적당한 크기로 크롭 후 face API를 이용하여 좌표를 찾고 SVG로 드로잉 
-2. 방명록 작성 : 방명록 읽기, 작성, 수정, 삭제를 통해 CRUD 구현 
+1. 사진 업로드 : 업로드 한 사진을 적당한 크기로 크롭 후 face API를 이용하여 좌표를 찾고 SVG로 드로잉   
+  
+  
+<img src="https://user-images.githubusercontent.com/66768245/129698713-f65fbb0f-9415-4b14-a79b-c732bc55ea62.gif" width="70%">.  
+2. 방명록 작성 : 방명록 읽기, 작성, 수정, 삭제를 통해 CRUD 구현   
+  
+  
+<img src="https://user-images.githubusercontent.com/66768245/129698841-afab7db8-d68f-4646-a1a9-c96c82797f24.gif" width="70%">
 3. 다운로드, 공유 : 드로잉을 다운로드하고 sns에 공유
+
 
 
 ### ✔️ 이벤트 후 과정:
